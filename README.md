@@ -1,37 +1,110 @@
-## Welcome to GitHub Pages
+# Automation Testing	
 
-You can use the [editor on GitHub](https://github.com/sauravchaudharysc/Automaton-Testing/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+Automation Testing means using an automation tool to execute your test case suite. On the contrary, Manual Testing is performed by a human sitting in front of a computer carefully executing the test steps.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+The automation software can also enter test data into the system under test , compare expected and actual results and generate detailed test reports.
 
-### Markdown
+### GOAL ?
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Goal of automation is to reduce number of test cases to be run manually and not eliminate manual testing all together.
 
-```markdown
-Syntax highlighted code block
+### Why Automated Testing ??
 
-# Header 1
-## Header 2
-### Header 3
+1. Manual testing of all work flows,all fields,all negative scenarios is time and cost consuming.
+2. It is difficult to test for multilingual sites commonly.
+3. Automation doesn't require human intervention you can run automated test unattended(Overnight).
+4. Automation increases speed of test execution and test coverage.
+5. Manual testing can be boring and hence error prone.
 
-- Bulleted
-- List
+### Which test case to Automate ??
 
-1. Numbered
-2. List
+1. Test cases that are executed repeatedly.
+2. Test cases that are very tedious or difficult to perform manually.
+3. Test cases which are time consuming.
+4. High Risk-Business critical test cases.
 
-**Bold** and _Italic_ and `Code` text
+### Automated Testing Process
 
-[Link](url) and ![Image](src)
+1. Test Tool Selection
+2. Define Scope of Automation
+3. Planning,Design and Development
+4. Text Execution
+5. Maintenance
+
+####  Automation Tools
+
+- QTP
+- Rational Robot
+- Selenium 
+
+### Selenium with Python
+
+Selenium Python bindings provides a simple API to write functional/acceptance tests using Selenium WebDriver. Through Selenium Python API you can access all functionalities of Selenium WebDriver in an intuitive way.
+
+Best tools for browser automation. It gives us the ability to browse or use a browser without a human involvement just through code we can act and move around the mouse click on buttons and interact with the websites.
+
+**Downloading Selenium**
+
+```
+	pip install selenium
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+**Downloading Drivers**
+Selenium requires a driver to interface with chosen browser. Depending upon the browser we need to download the drivers. [Clickme](https://selenium-python.readthedocs.io/installation.html#drivers)
 
-### Jekyll Themes
+- Extract the zip file in the project folder
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/sauravchaudharysc/Automaton-Testing/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+This drivers allows selenium to be able to open up our chrome browser and manipulate that browser.
 
-### Support or Contact
+### Basic Functionalities
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+- Import the Selenium web-driver
+- Use the downloaded chrome driver.
+
+```python
+from selenium import webdriver
+chrome_browser = webdriver.Chrome('./chromedriver')
+print(chrome_browser)
+```
+
+Save the file in same project folder containing chromedriver .
+
+To Run :
+
+- Open your terminal
+- Type filename.py
+
+##### Wohoo..! The chrome browser opened. (If any error occurs please update your browser)
+
+######  To Maximize the Chrome Windows
+
+```
+from selenium import webdriver
+chrome_browser = webdriver.Chrome('./chromedriver')
+chrome_browser.maximize_window()
+print(chrome_browser)
+```
+
+#### Save this , Run it  and explore it
+
+```python
+from selenium import webdriver
+chrome_browser = webdriver.Chrome('./chromedriver')
+chrome_browser.get('https://www.seleniumeasy.com/test/basic-first-form-demo.html')
+assert 'Selenium Easy Demo' in chrome_browser.title
+show_message_button = chrome_browser.find_element_by_class_name('btn-default')
+print(show_message_button.get_attribute('innerHTML'))
+assert 'Show Message' in chrome_browser.page_source
+user_message = chrome_browser.find_element_by_id('user-message')
+user_message.clear()
+user_message.send_keys('Automaton Testing')
+show_message_button.click()
+output_message = chrome_browser.find_element_by_id('display')
+#We use assert to assert is the statement error free, 
+#if error occurs it gives an assertion error or simply run the code and exit if no erroe.
+print(output_message.get_attribute('innerHTML'))
+assert 'Automaton Testing' in output_message.Text
+
+chrome_browser.quit()
+```
+
