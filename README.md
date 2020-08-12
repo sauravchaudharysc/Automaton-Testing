@@ -101,7 +101,8 @@ user_message.send_keys('Automaton Testing')
 show_message_button.click()
 output_message = chrome_browser.find_element_by_id('display')
 #We use assert to assert is the statement error free, 
-#if error occurs it gives an assertion error or simply run the code and exit if no erroe.
+#if error occurs it gives an assertion error 
+#If no error then it simply run the code and exit .
 print(output_message.get_attribute('innerHTML'))
 assert 'Automaton Testing' in output_message.Text
 
